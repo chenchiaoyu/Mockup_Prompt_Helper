@@ -12,14 +12,6 @@
 **專為品牌設計師、包裝設計師、電商視覺與行銷人打造的工業級 Mockup 提示詞建構工作台**  
 告別 AI 生成時的拉伸變形、尺寸失真、塑料感與歐美千篇一律模板，精準控制光學透視與真實物理比例！
 
-<br />
-
-[![GitHub Pages](https://img.shields.io/badge/🌐_GitHub_Pages-線上立即使用-22c55e?style=for-the-badge&logo=github&logoColor=white)](https://<你的GitHub帳號>.github.io/<專案名稱>/)
-[![Live Demo](https://img.shields.io/badge/🚀_預覽網址-Live_Demo-0284C7?style=for-the-badge&logo=googlechrome&logoColor=white)](https://ais-pre-j77ien4yvrsh2jakvw5vbc-578487684233.asia-northeast1.run.app)
-
-👉 **GitHub Pages 託管網址**：`https://<你的GitHub帳號>.github.io/<你的專案名稱>/`  
-👉 **目前線上預覽網址**：[https://ais-pre-j77ien4yvrsh2jakvw5vbc-578487684233.asia-northeast1.run.app](https://ais-pre-j77ien4yvrsh2jakvw5vbc-578487684233.asia-northeast1.run.app)
-
 </div>
 
 ---
