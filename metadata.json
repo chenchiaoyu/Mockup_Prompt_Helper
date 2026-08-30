@@ -1,0 +1,8 @@
+{
+  "name": "提示詞窮救星MOCKUP",
+  "description": "提示詞窮救星MOCKUP (MOCKUP Prompt Helper) - 專為平面設計師量身打造，快速解決提示詞窮窘境，生成精準商業 Mockup、包裝印刷、周邊商品與3C載體之 AI 提示詞助手",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
