@@ -1,4 +1,4 @@
-# 🎨 AI 商業設計 Mockup 提示詞工作坊 (Commercial Design Mockup Prompt Builder)
+# 提示詞窮救星 Mockup_Prompt_Helper
 
 <div align="center">
 
