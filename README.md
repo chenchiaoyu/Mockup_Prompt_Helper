@@ -1,5 +1,8 @@
 # 提示詞窮救星 Mockup Prompt Helper
 
+https://chenchiaoyu.github.io/Mockup_Prompt_Helper/
+
+
 <div align="center">
 
 ![React](https://img.shields.io/badge/React-18.x-blue.svg?logo=react)
@@ -9,8 +12,7 @@
 ![Version](https://img.shields.io/badge/Version-v2.5.0-orange.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-**專為品牌設計師、包裝設計師、電商視覺與行銷人打造的工業級 Mockup 提示詞建構工作台**  
-告別 AI 生成時的拉伸變形、尺寸失真、塑料感與歐美千篇一律模板，精準控制光學透視與真實物理比例！
+**專為品牌設計師、打造的Mockup 提示詞建構工作台**  
 
 </div>
 
