@@ -1,8 +1,5 @@
 # 提示詞窮救星 Mockup Prompt Helper
-
-https://chenchiaoyu.github.io/Mockup_Prompt_Helper/
-
-
+➡️ https://chenchiaoyu.github.io/Mockup_Prompt_Helper/
 <div align="center">
 
 ![React](https://img.shields.io/badge/React-18.x-blue.svg?logo=react)
