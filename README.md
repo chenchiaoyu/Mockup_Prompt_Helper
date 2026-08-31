@@ -28,10 +28,6 @@
 - 🌐 **UI 圖示語意全面優化**：
   - **地球圖示（Globe 🌐）**：一鍵開啟 Google 搜尋網路實物圖片與真實照片參考。
   - **資訊圖示（Info ℹ️）**：點擊開啟詳細提示詞檢視視窗，內含完整英文 Prompt、美學哲學解說、參考尺寸與光學大圖。
-- 🤖 **GitHub Pages 自動化發布工作流**：
-  - 內建 `.github/workflows/deploy.yml`，推送到 GitHub 即可透過 GitHub Actions 自動打包並發布至 GitHub Pages。
-  - 配置 `vite.config.ts` 相對路徑（`base: './'`），杜絕靜態資源 404 問題。
-
 ---
 
 ## 🎯 核心功能描述 (Core Features)
