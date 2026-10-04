@@ -192,6 +192,9 @@ export default function AestheticPromptMaster() {
   const handleSelectCategory = (catKey: CategoryKey) => {
     setSelectedCategory(catKey);
     setSubCategoryFilter('all');
+    if (searchQuery) {
+      setSearchQuery('');
+    }
   };
 
   // Open Full Prompt Modal Inspector
@@ -227,7 +230,13 @@ export default function AestheticPromptMaster() {
 
   // Flattened all prompt items for quick lookup
   const allDatabaseItems: PromptItem[] = useMemo(() => {
-    return Object.values(promptDatabase).flatMap(cat => cat.items);
+    return (Object.keys(promptDatabase) as CategoryKey[]).flatMap(key => {
+      const cat = promptDatabase[key];
+      return cat.items.map(item => ({
+        ...item,
+        categoryId: item.categoryId || key
+      }));
+    });
   }, []);
 
   const itemMap = useMemo(() => {
@@ -431,6 +440,20 @@ export default function AestheticPromptMaster() {
   }, [searchQuery, allDatabaseItems]);
 
   const currentCategoryData = promptDatabase[selectedCategory];
+
+  // Calculate visible items in the current active category
+  const visibleCategoryItems = useMemo(() => {
+    return currentCategoryData.items.filter(item => {
+      if (subCategoryFilter !== 'all' && item.subCategory !== subCategoryFilter) return false;
+      // 關鍵修復：尺度 (scale) 與成本 (cost) 僅為「產品載體與日常模型 (mockupProducts)」的專屬維度，
+      // 絕不干擾視角、材質、燈光、美學等其他維度！
+      if (selectedCategory === 'mockupProducts') {
+        if (scaleFilter !== 'all' && item.scale !== scaleFilter) return false;
+        if (costFilter !== 'all' && item.cost !== costFilter) return false;
+      }
+      return true;
+    });
+  }, [currentCategoryData, subCategoryFilter, selectedCategory, scaleFilter, costFilter]);
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] text-[#0F172A] flex flex-col font-sans bg-studio-grid-light selection:bg-sky-600 selection:text-white">
@@ -668,7 +691,7 @@ export default function AestheticPromptMaster() {
                           : 'text-slate-600 hover:text-slate-900'
                       }`}
                     >
-                      全部子類 ({currentCategoryData.items.length})
+                      全部子類 ({selectedCategory === 'mockupProducts' && (scaleFilter !== 'all' || costFilter !== 'all') ? `${visibleCategoryItems.length} / ${currentCategoryData.items.length}` : currentCategoryData.items.length})
                     </button>
                     {currentCategoryData.subCategories.map(sc => (
                       <button
@@ -849,6 +872,32 @@ export default function AestheticPromptMaster() {
                   </div>
                 )}
               </div>
+            ) : visibleCategoryItems.length === 0 ? (
+              // Empty state when filters yield no items
+              <div className="bg-white border border-slate-200 rounded-2xl p-8 text-center space-y-3 shadow-xs">
+                <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 border border-amber-200 flex items-center justify-center mx-auto">
+                  <SlidersHorizontal className="w-5 h-5" />
+                </div>
+                <h3 className="text-sm font-bold text-slate-800">
+                  目前篩選條件下沒有符合的模型標籤
+                </h3>
+                <p className="text-xs text-slate-500 max-w-md mx-auto">
+                  您所設定的尺度、成本或子類別條件在此分類無對應項目。您可以重設篩選條件以瀏覽完整模型。
+                </p>
+                <div className="pt-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setScaleFilter('all');
+                      setCostFilter('all');
+                      setSubCategoryFilter('all');
+                    }}
+                    className="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold rounded-xl transition cursor-pointer shadow-sm"
+                  >
+                    重設所有篩選條件
+                  </button>
+                </div>
+              </div>
             ) : (
               // Normal Step Mode: Render SubCategories
               <div className="space-y-4">
@@ -860,8 +909,12 @@ export default function AestheticPromptMaster() {
                   const subCategoryItems = currentCategoryData.items.filter(
                     item => {
                       if (item.subCategory !== sc.id) return false;
-                      if (scaleFilter !== 'all' && item.scale !== scaleFilter) return false;
-                      if (costFilter !== 'all' && item.cost !== costFilter) return false;
+                      // 關鍵修復：尺度與價格篩選僅限定於 mockupProducts（產品載體與日常模型）
+                      // 絕不影響視角構圖、鏡頭、材質紋理、燈光或風格等其他維度
+                      if (selectedCategory === 'mockupProducts') {
+                        if (scaleFilter !== 'all' && item.scale !== scaleFilter) return false;
+                        if (costFilter !== 'all' && item.cost !== costFilter) return false;
+                      }
                       return true;
                     }
                   );
